@@ -1,0 +1,19 @@
+[tool.poetry]
+name = "bugbuster-backend"
+version = "0.1.0"
+description = ""
+authors = ["chebupelka8 <stpzamyatin@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.9"
+sqlalchemy = "^2.0.32"
+fastapi = "^0.112.2"
+uvicorn = "^0.30.6"
+pydantic-settings = "^2.4.0"
+aiosqlite = "^0.20.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
