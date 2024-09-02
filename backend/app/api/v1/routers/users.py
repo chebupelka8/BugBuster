@@ -1,10 +1,11 @@
-from typing import Optional
+from typing import Optional, Any
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from fastapi import APIRouter
 
 from models import UserModel, UserRole
-from schemas import CreateUser
+from schemas import CreateUser, SecureUser
+from repositories import UsersRepository
 
 from core.database import AbstractDataBase
 
@@ -15,11 +16,6 @@ router = APIRouter(
 )
 
 
-@router.post("/add")
-async def add_user(user: CreateUser): 
-    async def add(session: AsyncSession):
-        new_user = UserModel(**user.model_dump())
-
-        session.add(new_user)
-    
-    await AbstractDataBase.run_in_session_with_commit(add)
+@router.post("/add", response_model=SecureUser)
+async def add_user(user: CreateUser) -> Any: 
+    return await UsersRepository.add_user(user)

@@ -20,3 +20,15 @@ class User(CreateUser):
 
     created_at: datetime
     updated_at: datetime
+
+
+class SecureUser(BaseModel):
+    id: int
+
+    username: PydanticTypes.string64
+    email: Optional[EmailStr] = None
+    role: UserRole = UserRole.member
+
+    created_at: datetime
+    updated_at: datetime
+

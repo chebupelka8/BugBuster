@@ -13,6 +13,7 @@ uvicorn = "^0.30.6"
 pydantic-settings = "^2.4.0"
 aiosqlite = "^0.20.0"
 pydantic = {extras = ["email"], version = "^2.8.2"}
+prettytable = "^3.11.0"
 
 
 [build-system]

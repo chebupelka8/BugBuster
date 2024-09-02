@@ -14,6 +14,7 @@ class CreateChallenge(BaseModel):
     long_description: str
     difficulty: ChallengeDifficulty = ChallengeDifficulty.easy
 
+    callable_name: PydanticTypes.string64
     initial_code: str = ""
     solution: str
 

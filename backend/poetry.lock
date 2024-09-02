@@ -239,6 +239,23 @@ files = [
 ]
 
 [[package]]
+name = "prettytable"
+version = "3.11.0"
+description = "A simple Python library for easily displaying tabular data in a visually appealing ASCII table format"
+optional = false
+python-versions = ">=3.8"
+files = [
+    {file = "prettytable-3.11.0-py3-none-any.whl", hash = "sha256:aa17083feb6c71da11a68b2c213b04675c4af4ce9c541762632ca3f2cb3546dd"},
+    {file = "prettytable-3.11.0.tar.gz", hash = "sha256:7e23ca1e68bbfd06ba8de98bf553bf3493264c96d5e8a615c0471025deeba722"},
+]
+
+[package.dependencies]
+wcwidth = "*"
+
+[package.extras]
+tests = ["pytest", "pytest-cov", "pytest-lazy-fixtures"]
+
+[[package]]
 name = "pydantic"
 version = "2.8.2"
 description = "Data validation using Python type hints"
@@ -542,7 +559,18 @@ typing-extensions = {version = ">=4.0", markers = "python_version < \"3.11\""}
 [package.extras]
 standard = ["colorama (>=0.4)", "httptools (>=0.5.0)", "python-dotenv (>=0.13)", "pyyaml (>=5.1)", "uvloop (>=0.14.0,!=0.15.0,!=0.15.1)", "watchfiles (>=0.13)", "websockets (>=10.4)"]
 
+[[package]]
+name = "wcwidth"
+version = "0.2.13"
+description = "Measures the displayed width of unicode strings in a terminal"
+optional = false
+python-versions = "*"
+files = [
+    {file = "wcwidth-0.2.13-py2.py3-none-any.whl", hash = "sha256:3da69048e4540d84af32131829ff948f1e022c1c6bdb8d6102117aac784f6859"},
+    {file = "wcwidth-0.2.13.tar.gz", hash = "sha256:72ea0c06399eb286d978fdedb6923a9eb47e1c486ce63e9b4e64fc18303972b5"},
+]
+
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.9"
-content-hash = "9672322e0f33bd1137b784608fa444e344f233471f14321aae40be0ae723a78a"
+content-hash = "966ae44378d9f007d46558ee78e62346ff97cf97b71a8246b2f406e59d88b35f"

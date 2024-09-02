@@ -1,4 +1,4 @@
-from typing import Callable, Any
+from typing import Callable, Any, Tuple
 import asyncio
 
 from sqlalchemy.ext.asyncio import create_async_engine, async_sessionmaker, AsyncSession
@@ -24,8 +24,8 @@ class AbstractDataBase:
     
     @classmethod
     async def run_in_session(
-        cls, func: Callable[[AsyncSession], Any], *args, **kwargs
-    ) -> None:
+        cls, func: Callable[[AsyncSession, Any], Any], *args, **kwargs
+    ) -> Any:
         async with cls.session() as session:
             if asyncio.iscoroutinefunction(func):     
                 returning = await func(session, *args, **kwargs)
@@ -36,11 +36,13 @@ class AbstractDataBase:
     
     @classmethod
     async def run_in_session_with_commit(
-        cls, func: Callable[[AsyncSession], Any], *args, **kwargs
-    ) -> None:
+        cls, func: Callable[[AsyncSession, Any], Any], *args, **kwargs
+    ) -> Any:
         async def inner(session: AsyncSession, *args, **kwargs) -> None:
             async with session.begin():
-                await func(session, *args, **kwargs)
+                returning = await func(session, *args, **kwargs)
+            
+            return returning
         
         return await cls.run_in_session(inner, *args, **kwargs) 
             
