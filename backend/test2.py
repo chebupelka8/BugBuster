@@ -1,18 +1,16 @@
-import subprocess
+from pydantic import BaseModel
+
+dct = {
+    "name": "step", 
+    "age": 22
+}
 
 
-with open("./input_code.py", "r", encoding="utf-8") as file:
-    input_code = file.read()
+class Obj(BaseModel):
+    name: str
+    age: int
 
+obj = Obj(name="step", age=22)
 
-
-callable_name = "target_function"
-params = ("asldkfjasd", "sadfasdf", "asdf")
-result = subprocess.run(["python", "-c", input_code + f"\n{callable_name}{str(params)}"], text=True, capture_output=True)
-
-
-
-print(
-    input_code + f"\n{callable_name}{str(params)}",
-    result.stderr
-)
+for key, value in obj.model_dump().items():
+    print()

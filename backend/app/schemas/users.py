@@ -8,14 +8,14 @@ from models import UserRole
 from core.reused_types import PydanticTypes
 
 
-class CreateUser(BaseModel):
+class CreateUpdateUser(BaseModel):
     username: PydanticTypes.string64
     email: Optional[EmailStr] = None
     password: PydanticTypes.string128
     role: UserRole = UserRole.member
 
 
-class User(CreateUser):
+class User(CreateUpdateUser):
     id: int
 
     created_at: datetime
