@@ -8,7 +8,7 @@ from models import ChallengeDifficulty
 from core.reused_types import PydanticTypes
 
 
-class CreateChallenge(BaseModel):
+class UpdateChallenge(BaseModel):
     title: PydanticTypes.string32
     description: Optional[PydanticTypes.string128] = None
     long_description: str
@@ -19,9 +19,12 @@ class CreateChallenge(BaseModel):
     solution: str
 
 
+class CreateChallenge(UpdateChallenge):
+    author_id: int
+
+
 class Challenge(CreateChallenge):
     id: int
-    author_id: int
 
     created_at: datetime
     updated_at: datetime

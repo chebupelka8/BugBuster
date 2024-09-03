@@ -2,7 +2,9 @@ from fastapi import APIRouter
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from models import ChallengeModel, ChallengeDifficulty
-from schemas import CreateChallenge
+from schemas import UpdateChallenge, CreateChallenge, Challenge
+
+from repositories import ChallengesRepository
 
 from core.database import AbstractDataBase
 
@@ -10,21 +12,19 @@ import subprocess
 
 
 router = APIRouter(
-    prefix="/challenge",
+    prefix="/challenges",
     tags=["Challenges"]
 )
 
 
-@router.post("/new")
-async def create_challenge(author_id: int, challenge: CreateChallenge):
-    async def add_new(session: AsyncSession):
-        new_challenge = ChallengeModel(
-            author_id=author_id, **challenge.model_dump()
-        )
+@router.post("/add")
+async def add_challenge(challenge: CreateChallenge) -> Challenge:
+    return await ChallengesRepository.add_challenge(challenge)
 
-        session.add(new_challenge)
-    
-    await AbstractDataBase.run_in_session_with_commit(add_new)
+
+@router.delete("/delete")
+async def delete_challenge(id: int) -> Challenge:
+    return await ChallengesRepository.delete_challenge_by_id(id)
 
 
 

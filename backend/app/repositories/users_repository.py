@@ -1,6 +1,8 @@
+from typing import Optional
+
 from fastapi import HTTPException
+
 from sqlalchemy.ext.asyncio import AsyncSession
-from sqlalchemy import delete
 
 from core.database import DataBase
 
@@ -22,6 +24,19 @@ class UsersRepository(DataBase):
     async def add_user(cls, user: CreateUpdateUser) -> User:
         return await cls.run_in_session_with_commit(
             cls.__add_user, UserModel(**user.model_dump())
+        )
+    
+    @staticmethod
+    async def __get_user_by_id(session: AsyncSession, id: int) -> User:
+        if (target := await session.get(UserModel, id)) is not None:
+            return User(**target.dump())
+        else:
+            raise HTTPException(status_code=404, detail="User not found")
+    
+    @classmethod
+    async def get_user_by_id(cls, id: int) -> User:
+        return await cls.run_in_session(
+            cls.__get_user_by_id, id
         )
 
     @staticmethod

@@ -1,6 +1,6 @@
 from fastapi import APIRouter
 
-from .routers import challenges_router, users_router
+from .routers import challenges_router, users_router, solutions_router
 
 
 __all__ = ["router"]
@@ -13,3 +13,4 @@ router = APIRouter(
 
 router.include_router(challenges_router)
 router.include_router(users_router)
+router.include_router(solutions_router)

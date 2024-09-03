@@ -25,3 +25,8 @@ async def delete_user(id: int) -> Any:
 @router.put("/update", response_model=SecureUser)
 async def update_user(target_id: int, updated_data: CreateUpdateUser) -> Any:
     return await UsersRepository.update_user(target_id, updated_data)
+
+
+@router.get("/get", response_model=SecureUser)
+async def get_user(id: int) -> Any:
+    return await UsersRepository.get_user_by_id(id)
