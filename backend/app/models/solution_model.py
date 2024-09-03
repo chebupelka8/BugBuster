@@ -18,7 +18,9 @@ class SolutionModel(AbstractModel):
 
     author_id: Mapped[int] = mapped_column(ForeignKey("users.id"))
     challenge_id: Mapped[int] = mapped_column(ForeignKey("challenges.id"))
+
     code: Mapped[str]
     status: Mapped[SolutionStatus] = mapped_column(default=SolutionStatus.uncompleted)
 
-    sent_at: Mapped[SQLAlchemyTypes.created_at_utc]
+    created_at: Mapped[SQLAlchemyTypes.created_at_utc]
+    updated_at: Mapped[SQLAlchemyTypes.updated_at_utc]

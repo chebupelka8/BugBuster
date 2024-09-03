@@ -1,2 +1,3 @@
 from .users_repository import UsersRepository
 from .challenges_repository import ChallengesRepository
+from .solutions_repository import SolutionsRepository
