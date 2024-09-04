@@ -22,6 +22,8 @@ async def delete_solution(id: int) -> Solution:
 
 
 @router.post("/send")
-async def send_solution(solution: CreateSolution):
-    ...
+async def send_solution(id: int):
+    # print(await SolutionsRepository.send_solution(id))
+
+    return await SolutionsRepository.send_solution(id)
     

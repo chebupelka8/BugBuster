@@ -1,12 +1,12 @@
-import os
-from contextlib import redirect_stdout
-
 from typing import Callable, Any
 from functools import wraps
 
 from pydantic import BaseModel
 
 import subprocess
+import os
+
+from contextlib import redirect_stdout
 
 
 class ResultType(BaseModel):
@@ -87,24 +87,4 @@ class Test:
             
             return wrapper
         return inner
-
-
-import json
-
-
-with open("./input_code.py", "r", encoding="utf-8") as file:
-    input_code = file.read()
-    exec(input_code)
-
-
-test = Test(input_code)
-
-@test.basic_tests()
-def checker_function():
-    test.check_output("target_function", 101, "str", "hello")  # type: ignore
-    test.check_output("target_function", 5, "str", "str")  # type: ignore
-    test.check_output("target_function", 1, "str", "str")  # type: ignore
-
-
-print(json.dumps(checker_function(), indent=4))
 

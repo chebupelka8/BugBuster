@@ -3,6 +3,8 @@ from datetime import datetime
 
 from models import SolutionStatus
 
+from core.reused_types import PydanticTypes
+
 
 class UpdateSolution(BaseModel):
     code: str
@@ -16,4 +18,11 @@ class CreateSolution(UpdateSolution):
 
 class Solution(CreateSolution):
     id: int
-    sent_at: datetime
+
+    created_at: datetime
+    updated_at: datetime
+
+
+class RunnableSolution(UpdateSolution):
+    callable_name: PydanticTypes.string64
+    test_cases: str

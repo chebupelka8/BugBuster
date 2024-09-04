@@ -15,6 +15,8 @@ class UpdateChallenge(BaseModel):
     difficulty: ChallengeDifficulty = ChallengeDifficulty.easy
 
     callable_name: PydanticTypes.string64
+    test_cases: str
+
     initial_code: str = ""
     solution: str
 

@@ -26,6 +26,8 @@ class ChallengeModel(AbstractModel):
     difficulty: Mapped[ChallengeDifficulty]
 
     callable_name: Mapped[SQLAlchemyTypes.string64]
+    test_cases: Mapped[str]
+
     initial_code: Mapped[str] = mapped_column(default="")
     solution: Mapped[str]
     

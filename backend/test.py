@@ -16,10 +16,6 @@ exec(input_code)
 
 
 
-class InvalidOutput(ValueError):
-    ...
-
-
 from typing import Callable, Any
 from functools import wraps
 

@@ -16,7 +16,7 @@ class AbstractModel(DeclarativeBase):
         
         return value
     
-    should_use_table_view: bool = True
+    should_use_table_view: bool = False
 
     def __repr__(self) -> str:
         dumped = self.dump()
